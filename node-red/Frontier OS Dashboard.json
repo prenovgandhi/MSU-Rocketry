@@ -239,41 +239,20 @@
         "type": "ui_text",
         "z": "39239084b100bbed",
         "group": "f44905f4c5202a53",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
-        "name": "ApogeeVoltage_Title",
-        "label": "Apogee Igniter Voltage:",
-        "format": "0.00 V",
-        "layout": "row-spread",
+        "name": "Apogee_If_Green_Title",
+        "label": "If LED green = Continuity",
+        "format": "",
+        "layout": "col-center",
         "className": "",
         "style": false,
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 840,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "7898cff107b989c4",
-        "type": "ui_text",
-        "z": "39239084b100bbed",
-        "group": "f647ecbd632b6bad",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "MainVoltage_Title",
-        "label": "Main Igniter Voltage:",
-        "format": "0.00 V",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 830,
-        "y": 180,
+        "x": 1090,
+        "y": 60,
         "wires": []
     },
     {
@@ -548,6 +527,250 @@
                 "df1376d6e00c0206"
             ]
         ]
+    },
+    {
+        "id": "10e11c5a454f7de5",
+        "type": "ui_led",
+        "z": "39239084b100bbed",
+        "order": 4,
+        "group": "f44905f4c5202a53",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 610,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7a6c6bcfc460103b",
+        "type": "ui_text",
+        "z": "39239084b100bbed",
+        "group": "f44905f4c5202a53",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Apogee_If_Red_Title",
+        "label": "If LED red = No Continuity",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1080,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7465cc9ef7b9084f",
+        "type": "ui_slider",
+        "z": "39239084b100bbed",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "group": "f44905f4c5202a53",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "3",
+        "step": "0.25",
+        "className": "",
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "e76dc5fdabbf043d"
+            ]
+        ]
+    },
+    {
+        "id": "732f3d3adc11c0fb",
+        "type": "change",
+        "z": "39239084b100bbed",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e76dc5fdabbf043d",
+        "type": "function",
+        "z": "39239084b100bbed",
+        "name": "function 1",
+        "func": "// Get the current payload\nvar num = msg.payload;\n\n// Check if the number is greater than 0.5\nif(num > 0.5) {\n    // Change the payload to true\n    msg.payload = true;\n} else {\n    // If not, keep the original payload\n    msg.payload = false;\n}\n\n// Return the updated message\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "10e11c5a454f7de5"
+            ]
+        ]
+    },
+    {
+        "id": "2d26c231a4544282",
+        "type": "ui_text",
+        "z": "39239084b100bbed",
+        "group": "f647ecbd632b6bad",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Main_Igniter_Voltage_Title",
+        "label": "If LED green = Continuity",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1220,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5b3cf27b59358f77",
+        "type": "ui_text",
+        "z": "39239084b100bbed",
+        "group": "f647ecbd632b6bad",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Main_Igniter_Voltage_If_Red_Title",
+        "label": "If LED red = No Continuity",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1240,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1d4420887079f00e",
+        "type": "ui_slider",
+        "z": "39239084b100bbed",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "group": "f647ecbd632b6bad",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "3",
+        "step": "0.25",
+        "className": "",
+        "x": 1150,
+        "y": 440,
+        "wires": [
+            [
+                "c42b8a633f45b167"
+            ]
+        ]
+    },
+    {
+        "id": "c42b8a633f45b167",
+        "type": "function",
+        "z": "39239084b100bbed",
+        "name": "function 2",
+        "func": "// Get the current payload\nvar num = msg.payload;\n\n// Check if the number is greater than 0.5\nif(num > 0.5) {\n    // Change the payload to true\n    msg.payload = true;\n} else {\n    // If not, keep the original payload\n    msg.payload = false;\n}\n\n// Return the updated message\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 440,
+        "wires": [
+            [
+                "db3a762666d97f73"
+            ]
+        ]
+    },
+    {
+        "id": "db3a762666d97f73",
+        "type": "ui_led",
+        "z": "39239084b100bbed",
+        "order": 5,
+        "group": "f647ecbd632b6bad",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 1510,
+        "y": 440,
+        "wires": []
     },
     {
         "id": "7fe01ec6f6cd4a81",
@@ -941,20 +1164,9 @@
     {
         "id": "f44905f4c5202a53",
         "type": "ui_group",
-        "name": "Apogee Igniter Voltage",
+        "name": "Apogee Igniter Continuity",
         "tab": "4fa38008a8aa956c",
         "order": 3,
-        "disp": true,
-        "width": "12",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "f647ecbd632b6bad",
-        "type": "ui_group",
-        "name": "Main Igniter Voltage",
-        "tab": "4fa38008a8aa956c",
-        "order": 5,
         "disp": true,
         "width": "12",
         "collapse": false,
@@ -1010,6 +1222,17 @@
         "name": "On-board Data Logging",
         "tab": "4fa38008a8aa956c",
         "order": 8,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f647ecbd632b6bad",
+        "type": "ui_group",
+        "name": "Main Igniter Continuity",
+        "tab": "4fa38008a8aa956c",
+        "order": 5,
         "disp": true,
         "width": "12",
         "collapse": false,
