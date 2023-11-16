@@ -26,7 +26,15 @@
     {
         "id": "c5384a884e685489",
         "type": "tab",
-        "label": "Load Cells (3)",
+        "label": "Tank-Weighing Load Cells",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8d955ac1b24ec7fa",
+        "type": "tab",
+        "label": "Thrust Load Cells",
         "disabled": false,
         "info": "",
         "env": []
@@ -69,7 +77,7 @@
         "tab": "feae6ac99750d11d",
         "order": 2,
         "disp": true,
-        "width": 5,
+        "width": "5",
         "collapse": false,
         "className": ""
     },
@@ -218,6 +226,24 @@
         "className": ""
     },
     {
+        "id": "42d014aded41fd14",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "6695468d22333f4b",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "98d15d745fce55eb",
+        "type": "ui_group",
+        "name": "Group 3",
+        "tab": "6695468d22333f4b",
+        "order": 3,
+        "disp": true,
+        "width": 6
+    },
+    {
         "id": "f884895d5e5b8794",
         "type": "mqtt out",
         "z": "52e8d5fce57c0ee0",
@@ -298,7 +324,7 @@
         "animate": false,
         "className": "",
         "x": 200,
-        "y": 340,
+        "y": 320,
         "wires": [
             [
                 "f884895d5e5b8794",
@@ -536,14 +562,13 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 140,
+        "x": 60,
         "y": 80,
         "wires": [
             [
-                "6dc91c692a9f3d56",
-                "f1470d8ffb666f8b",
-                "55477f38c589893b",
-                "aa99fd5604899b38"
+                "cf7f3f7d993560b1",
+                "b38281bab6e65d58",
+                "53ab12034a750c4e"
             ]
         ]
     },
@@ -577,7 +602,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 510,
         "y": 80,
         "wires": [
             []
@@ -615,11 +640,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 510,
         "y": 140,
         "wires": [
             [
-                "3038d02e5c206d3b"
+                "3038d02e5c206d3b",
+                "73315cf65b49f058"
             ]
         ]
     },
@@ -647,7 +673,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 610,
+        "x": 790,
         "y": 140,
         "wires": []
     },
@@ -694,11 +720,11 @@
         "z": "e4e02b14d96e090b",
         "name": "",
         "group": "a26745f53d1834f0",
-        "order": 4,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Debug Pressure Int Tank",
+        "title": "raw Debug Fill Line",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -712,20 +738,20 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 610,
-        "y": 380,
+        "x": 470,
+        "y": 340,
         "wires": []
     },
     {
-        "id": "aa99fd5604899b38",
+        "id": "73315cf65b49f058",
         "type": "ui_chart",
         "z": "e4e02b14d96e090b",
         "name": "",
         "group": "a26745f53d1834f0",
-        "order": 6,
+        "order": 3,
         "width": 0,
         "height": 0,
-        "label": "Debug Pressure Chart",
+        "label": "fill line chart",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -733,7 +759,73 @@
         "nodata": "",
         "dot": false,
         "ymin": "0",
-        "ymax": "4095",
+        "ymax": "1500",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 830,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cf7f3f7d993560b1",
+        "type": "smooth",
+        "z": "e4e02b14d96e090b",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "16",
+        "round": "0",
+        "mult": "single",
+        "reduce": false,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "6dc91c692a9f3d56",
+                "f1470d8ffb666f8b",
+                "55477f38c589893b",
+                "3f69d3158c9e9161"
+            ]
+        ]
+    },
+    {
+        "id": "b38281bab6e65d58",
+        "type": "ui_chart",
+        "z": "e4e02b14d96e090b",
+        "name": "",
+        "group": "a26745f53d1834f0",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "raw fill line",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
         "removeOlder": 1,
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
@@ -754,8 +846,115 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 600,
-        "y": 480,
+        "x": 310,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f69d3158c9e9161",
+        "type": "ui_chart",
+        "z": "e4e02b14d96e090b",
+        "name": "",
+        "group": "a26745f53d1834f0",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "raw fill 2",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 380,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53ab12034a750c4e",
+        "type": "smooth",
+        "z": "e4e02b14d96e090b",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "3",
+        "round": "0",
+        "mult": "single",
+        "reduce": false,
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "6b051c0d00ccf035"
+            ]
+        ]
+    },
+    {
+        "id": "6b051c0d00ccf035",
+        "type": "ui_chart",
+        "z": "e4e02b14d96e090b",
+        "name": "",
+        "group": "a26745f53d1834f0",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "label": "raw fill 3",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 380,
+        "y": 560,
         "wires": [
             []
         ]
@@ -777,10 +976,8 @@
         "y": 80,
         "wires": [
             [
-                "6a660e3b1f76ba86",
-                "fa96ccb2d4a0f8f5",
-                "4d31ede9339b98e7",
-                "a330d51e006c25e6"
+                "db78fe33cb396055",
+                "7aede436f0e465b8"
             ]
         ]
     },
@@ -814,7 +1011,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 540,
         "y": 80,
         "wires": [
             []
@@ -852,11 +1049,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 550,
         "y": 140,
         "wires": [
             [
-                "cd0eb164c3cf2dae"
+                "cd0eb164c3cf2dae",
+                "66743bb821e01d8e"
             ]
         ]
     },
@@ -884,7 +1082,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 640,
+        "x": 800,
         "y": 140,
         "wires": []
     },
@@ -931,11 +1129,11 @@
         "z": "813b0b32d0aa75cf",
         "name": "",
         "group": "a26745f53d1834f0",
-        "order": 3,
+        "order": 1,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Debug Pressure Fill Line",
+        "title": "raw Debug Internal Tank ",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -954,23 +1152,23 @@
         "wires": []
     },
     {
-        "id": "a330d51e006c25e6",
+        "id": "66743bb821e01d8e",
         "type": "ui_chart",
         "z": "813b0b32d0aa75cf",
         "name": "",
         "group": "a26745f53d1834f0",
-        "order": 7,
+        "order": 6,
         "width": 0,
         "height": 0,
-        "label": "Debug Pressure Fill Line Chart",
+        "label": "internal tank chart",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
-        "ymin": "0",
-        "ymax": "4095",
+        "ymin": "",
+        "ymax": "",
         "removeOlder": 1,
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
@@ -991,8 +1189,73 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 610,
-        "y": 500,
+        "x": 790,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db78fe33cb396055",
+        "type": "smooth",
+        "z": "813b0b32d0aa75cf",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "16",
+        "round": "0",
+        "mult": "single",
+        "reduce": false,
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "6a660e3b1f76ba86",
+                "fa96ccb2d4a0f8f5",
+                "4d31ede9339b98e7"
+            ]
+        ]
+    },
+    {
+        "id": "7aede436f0e465b8",
+        "type": "ui_chart",
+        "z": "813b0b32d0aa75cf",
+        "name": "",
+        "group": "a26745f53d1834f0",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "label": "raw int tank",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 390,
+        "y": 460,
         "wires": [
             []
         ]
@@ -1069,7 +1332,7 @@
         "y": 260,
         "wires": [
             [
-                "38ce02020c66399f"
+                "798f037af0186f4a"
             ]
         ]
     },
@@ -1083,7 +1346,7 @@
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Load Cell Pressure Graph",
+        "title": "Tank Load Cell Pressure Guage",
         "label": "units",
         "format": "{{value}}",
         "min": "0",
@@ -1097,7 +1360,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 750,
+        "x": 910,
         "y": 260,
         "wires": []
     },
@@ -1155,7 +1418,7 @@
         "y": 440,
         "wires": [
             [
-                "daf23bbdf2c2f151"
+                "22d47dfe184cf74f"
             ]
         ]
     },
@@ -1176,7 +1439,7 @@
         "y": 500,
         "wires": [
             [
-                "f8276e4e5e08d169"
+                "7ba219e107bdcc73"
             ]
         ]
     },
@@ -1197,7 +1460,7 @@
         "y": 560,
         "wires": [
             [
-                "7eecad266c04c1c5"
+                "b512d23aa7079f4b"
             ]
         ]
     },
@@ -1214,12 +1477,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 230,
-        "y": 200,
+        "x": 170,
+        "y": 180,
         "wires": [
             [
                 "a3bf391ced57ea04",
-                "63cd4e965c6ecaf1"
+                "7396fbbe3f3167ab"
             ]
         ]
     },
@@ -1228,12 +1491,12 @@
         "type": "ui_gauge",
         "z": "c5384a884e685489",
         "name": "",
-        "group": "a26745f53d1834f0",
-        "order": 9,
+        "group": "98d15d745fce55eb",
+        "order": 1,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Load Cell 1",
+        "title": "Tank Load Cell 1",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -1247,7 +1510,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 450,
+        "x": 750,
         "y": 440,
         "wires": []
     },
@@ -1256,12 +1519,12 @@
         "type": "ui_gauge",
         "z": "c5384a884e685489",
         "name": "",
-        "group": "a26745f53d1834f0",
-        "order": 10,
+        "group": "98d15d745fce55eb",
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Load Cell 2",
+        "title": "Tank Load Cell 2",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -1275,7 +1538,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 450,
+        "x": 750,
         "y": 500,
         "wires": []
     },
@@ -1284,12 +1547,12 @@
         "type": "ui_gauge",
         "z": "c5384a884e685489",
         "name": "",
-        "group": "a26745f53d1834f0",
-        "order": 11,
+        "group": "98d15d745fce55eb",
+        "order": 3,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Load Cell 3",
+        "title": "Tank Load Cell 3",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -1303,8 +1566,734 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 450,
+        "x": 750,
         "y": 560,
         "wires": []
+    },
+    {
+        "id": "798f037af0186f4a",
+        "type": "smooth",
+        "z": "c5384a884e685489",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 680,
+        "y": 260,
+        "wires": [
+            [
+                "38ce02020c66399f",
+                "d564e51462c67d30"
+            ]
+        ]
+    },
+    {
+        "id": "b512d23aa7079f4b",
+        "type": "smooth",
+        "z": "c5384a884e685489",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 500,
+        "y": 560,
+        "wires": [
+            [
+                "7eecad266c04c1c5"
+            ]
+        ]
+    },
+    {
+        "id": "7ba219e107bdcc73",
+        "type": "smooth",
+        "z": "c5384a884e685489",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 500,
+        "y": 500,
+        "wires": [
+            [
+                "f8276e4e5e08d169"
+            ]
+        ]
+    },
+    {
+        "id": "22d47dfe184cf74f",
+        "type": "smooth",
+        "z": "c5384a884e685489",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "daf23bbdf2c2f151"
+            ]
+        ]
+    },
+    {
+        "id": "7396fbbe3f3167ab",
+        "type": "smooth",
+        "z": "c5384a884e685489",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "63cd4e965c6ecaf1"
+            ]
+        ]
+    },
+    {
+        "id": "d564e51462c67d30",
+        "type": "ui_chart",
+        "z": "c5384a884e685489",
+        "name": "",
+        "group": "f0ab6a94c37a62ed",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "label": "Tank load cell pressure graph",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 920,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "866e8b6123d630a3",
+        "type": "function",
+        "z": "8d955ac1b24ec7fa",
+        "name": "Store Calibration",
+        "func": "var calibrationPoints = flow.get(\"calibrationPoints\") || [];\n\nif (calibrationPoints.length < 2) {\n    calibrationPoints.push({\n        rawValue: msg.payload.rawValue,\n        pressureValue: msg.payload.pressureValue\n    });\n    \n    flow.set(\"calibrationPoints\", calibrationPoints);\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4fda4927a735511a",
+        "type": "function",
+        "z": "8d955ac1b24ec7fa",
+        "name": "Last Raw Value Storage",
+        "func": "flow.set(\"lastRawValue\", msg.payload);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80734b61e64cc8fb",
+        "type": "function",
+        "z": "8d955ac1b24ec7fa",
+        "name": "Function",
+        "func": "var pressureValue = parseInt(msg.payload.calibrationValue, 10);  // Convert entered value to number\nvar rawValue = flow.get(\"lastRawValue\");\n\nreturn {\n    payload: {\n        pressureValue: pressureValue,\n        rawValue: rawValue\n    }\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "866e8b6123d630a3"
+            ]
+        ]
+    },
+    {
+        "id": "6c06f95964d7af1f",
+        "type": "function",
+        "z": "8d955ac1b24ec7fa",
+        "name": "Calculate Pressure",
+        "func": "var calibrationPoints = flow.get(\"calibrationPoints1\") || [];\n\nif (calibrationPoints.length === 2) {\n    var p1 = calibrationPoints[0];\n    var p2 = calibrationPoints[1];\n\n    var m = (p2.pressureValue - p1.pressureValue) / (p2.rawValue - p1.rawValue);\n    var b = p1.pressureValue - m * p1.rawValue;\n\n    var pressure = m * msg.payload + b;\n    return { payload: pressure };\n} else {\n    // Not enough calibration points\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "6f3e46531f98e432"
+            ]
+        ]
+    },
+    {
+        "id": "ea56b7f41530dbcf",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "f0ab6a94c37a62ed",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell Pressure Graph",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 880,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "10558288a2d35dfd",
+        "type": "ui_form",
+        "z": "8d955ac1b24ec7fa",
+        "name": "Calibration Value Form",
+        "label": "Load Cell B Calibration Form",
+        "group": "4755d6d89d9c934a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Calibration Value",
+                "value": "calibrationValue",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "calibrationValue": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "80734b61e64cc8fb"
+            ]
+        ]
+    },
+    {
+        "id": "3875a713eb462225",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/force1/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "d1c33f83f47de094"
+            ]
+        ]
+    },
+    {
+        "id": "1d5c9f80d6a05a12",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/force2/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "d1b88b1a9ffb8a0a"
+            ]
+        ]
+    },
+    {
+        "id": "7d64568e5c30d7b7",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/force3/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "0cf9c8b515a4f412"
+            ]
+        ]
+    },
+    {
+        "id": "8b253f7be3ecd75c",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/forceavg/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "4fda4927a735511a",
+                "6f276235f74bac4a"
+            ]
+        ]
+    },
+    {
+        "id": "8114644a62c3521e",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "42d014aded41fd14",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell A",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-100000",
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8165c523b48ed96d",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "42d014aded41fd14",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell B",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a5083a0a26ced81f",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "42d014aded41fd14",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell C",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6f3e46531f98e432",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 640,
+        "y": 160,
+        "wires": [
+            [
+                "ea56b7f41530dbcf",
+                "bd91c6fbe2e8944c"
+            ]
+        ]
+    },
+    {
+        "id": "618e1f43bebcb70d",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/force4/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "d4a6280d13842419"
+            ]
+        ]
+    },
+    {
+        "id": "64b1920f1db1ac51",
+        "type": "mqtt in",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "topic": "/loadcell2/force5/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8f0859823d35e390",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 580,
+        "wires": [
+            [
+                "c6c1c1e63e7f26b4"
+            ]
+        ]
+    },
+    {
+        "id": "c50f25c5a6ce6573",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "42d014aded41fd14",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell D",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8a3d638beb7c8f7d",
+        "type": "ui_gauge",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "42d014aded41fd14",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thrust Load Cell E",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "d4a6280d13842419",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 300,
+        "y": 520,
+        "wires": [
+            [
+                "c50f25c5a6ce6573"
+            ]
+        ]
+    },
+    {
+        "id": "d1c33f83f47de094",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "8114644a62c3521e"
+            ]
+        ]
+    },
+    {
+        "id": "d1b88b1a9ffb8a0a",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "8165c523b48ed96d"
+            ]
+        ]
+    },
+    {
+        "id": "0cf9c8b515a4f412",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 300,
+        "y": 460,
+        "wires": [
+            [
+                "a5083a0a26ced81f"
+            ]
+        ]
+    },
+    {
+        "id": "c6c1c1e63e7f26b4",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [
+                "8a3d638beb7c8f7d"
+            ]
+        ]
+    },
+    {
+        "id": "6f276235f74bac4a",
+        "type": "smooth",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "4",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "6c06f95964d7af1f"
+            ]
+        ]
+    },
+    {
+        "id": "bd91c6fbe2e8944c",
+        "type": "ui_chart",
+        "z": "8d955ac1b24ec7fa",
+        "name": "",
+        "group": "f0ab6a94c37a62ed",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "label": "Thrust load cell pressure graph",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 870,
+        "y": 100,
+        "wires": [
+            []
+        ]
     }
 ]
