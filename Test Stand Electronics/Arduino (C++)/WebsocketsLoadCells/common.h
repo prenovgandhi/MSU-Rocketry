@@ -3,10 +3,12 @@
 #define COMMON_H
 
 #include <ArduinoWebsockets.h>
+//ArduinoWebSockets by Gil Maimon...
 #include <WiFi.h>
+//should be here already if you'pre using an esp32
 
-const char* ssid = "yourSSID"; // Replace with your WiFi SSID
-const char* password = "yourPASSWORD";  // Replace with your WiFi Password
+const char* ssid = "RocketryMQTTAP"; // Replace with your WiFi SSID
+const char* password = "gospartans";  // Replace with your WiFi Password
 
 using namespace websockets;
 
@@ -20,13 +22,22 @@ void connectToWiFi() {
   }
 }
 
+void webSocketEvent(WebsocketsEvent event, String data) {
+  // Handle WebSocket events
+}
+
 void connectToWebSocket(const char* websockets_server) {
   client.onEvent(webSocketEvent);
   client.connect(websockets_server);
 }
 
-void webSocketEvent(WebsocketsEvent event, String data) {
-  // Handle WebSocket events
+void sendPing() {
+  if (client.ping()) {
+    Serial.println("Sent Ping");
+  } else {
+    Serial.println("Ping Failed");
+  }
 }
+
 
 #endif
