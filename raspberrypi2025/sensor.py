@@ -1,66 +1,3 @@
-Last login: Tue Oct 15 19:34:34 on ttys000
-chancesmith@Chances-MacBook-Pro ~ % ssh MSURocketry@raspberrypi.local
-MSURocketry@raspberrypi.local's password: 
-Linux raspberrypi 6.1.0-rpi4-rpi-v8 #1 SMP PREEMPT Debian 1:6.1.54-1+rpt2 (2023-10-05) aarch64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Wed Oct  9 01:25:28 2024 from fe80::428:e568:c46f:3e%wlan0
-MSURocketry@raspberrypi:~ $ ls
-adafruit_bus_device  env                       sensor.py
-adafruit_gps.py      mpl3115a2                 sensor.py.save
-adafruit_register    mpl_mpu_gps_code.py       sensor_test.py
-air.py               mpl_mpu_gps_code.py.save  state.py
-COM6                 mpu6050                   testing_scripts
-data.csv             __pycache__
-Desktop              sensor_data
-MSURocketry@raspberrypi:~ $ sudo nano air.pu
-MSURocketry@raspberrypi:~ $ sudo nano air.py
-MSURocketry@raspberrypi:~ $ sudo nano sensor.py
-MSURocketry@raspberrypi:~ $ sudo nano sensor.py
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -130,5 +67,3 @@ class Sensor:
         try:
             # publish altimeter data
 
-^G Help          ^O Write Out     ^W Where Is      ^K Cut           ^T Execute       ^C Location      M-U Undo         M-A Set Mark     M-] To Bracket   M-Q Previous     ^B Back          ^◂ Prev Word
-^X Exit          ^R Read File     ^\ Replace       ^U Paste         ^J Justify       ^/ Go To Line    M-E Redo         M-6 Copy         ^Q Where Was     M-W Next         ^F Forward       ^▸ Next Word
