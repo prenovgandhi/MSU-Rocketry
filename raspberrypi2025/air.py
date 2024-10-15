@@ -18,3 +18,27 @@ _main_deployed      = False  # Main parachute is deployed
 
 #######################################################################
 # Initialization
+#######################################################################
+
+# initialize our sensors so we can read from them, and start collecting data
+sensors = Sensor()
+
+# initialize state object so we can determine/change state
+state = State()
+
+#TODO: xbee stuff, see MSU-Rocketry/FrontierOS/mosquittopub.py on the github
+
+# initially, we will be in the idle state
+current_state = "idle"
+
+# Main loop
+while True:
+
+    #######################################################################
+    # Interpret state information
+    #######################################################################
+
+    # if y-acceleration equals ~9.8, we are entering the armed state
+    #TODO: make this a range instead of exactly 9.8
+    # if sensors.mpu.acceleration[1] == 9.8:
+    sensors.start_sensors()
