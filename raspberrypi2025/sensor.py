@@ -1,8 +1,3 @@
-
-
-
-
-  GNU nano 7.2                                                                                           sensor.py                                                                                                    
 import time
 import board
 import serial
