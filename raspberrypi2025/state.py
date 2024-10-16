@@ -52,14 +52,25 @@ class State:
         while self.mpu.acceleration[1] > 0:
 
     def burnout(self):
-        while True:
-            val = []
-            for n in range(5):
-                n = self.mpu.acceleration[1]
-                val.append(n)
-            for i in values:
-                total += i
-                total = total / 5
+        prev = 0
+        burnout = True
+        while burnout:
+            height = [] #create a list of height
+            for i, n in enumerate(height): #record 5 values
+                time.sleep(1) #pauses for 1 sec
+                initial = 0
+                final = 0
+                if i == 0 or i == 1:
+                    inital += n
+                else:
+                    final += n
+            
+            current = (final - initial) / 2
+            if current < prev: #if current velocity is less than previous, then burnout
+                burnout = False
+            prev = current
+                
+                
                 
     
                 
