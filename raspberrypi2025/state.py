@@ -46,3 +46,22 @@ class State:
     def remove(self, *new_states):
         for new_state in new_states:
             self.state -= new_state
+
+
+    def lift_off(self):
+        while self.mpu.acceleration[1] > 0:
+
+    def burnout(self):
+        while True:
+            val = []
+            for n in range(5):
+                n = self.mpu.acceleration[1]
+                val.append(n)
+            for i in values:
+                total += i
+                total = total / 5
+                
+    
+                
+            
+            
