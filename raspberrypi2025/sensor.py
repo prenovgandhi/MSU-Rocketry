@@ -61,4 +61,67 @@ class Sensor:
         # while True:
         try:
             # publish altimeter data
+            # publish altimeter data
+            self.mqtt_client.publish("mpl3115a2/altitude", str( self.mpl.altitude ))
+            self.mqtt_client.publish("mpl3115a2/temperature", str( self.mpl.temperature ))
 
+            # publish accelerometer data
+            self.mqtt_client.publish("mpu6050/AcX", str( self.mpu.acceleration[0] ))
+            self.mqtt_client.publish("mpu6050/AcY", str( self.mpu.acceleration[1] ))
+            self.mqtt_client.publish("mpu6050/AcZ", str( self.mpu.acceleration[2] ))
+
+            # format data and log it in CSV file
+            accX = str(round(self.mpu.acceleration[0]))
+            accY = str(round(self.mpu.acceleration[1]))
+            temperature = str(round(self.mpl.temperature, 6))
+            altitude = str(round(self.mpl.altitude,6))
+
+            # print(str(self.mpu.acceleration[1]))
+                #print(accX, accY, temperature, altitude)
+            self.print_data(accX, accY, temperature, altitude)
+
+            # TODO: switch this to something that is correct and figure out how to get the air.py stuff to work with it
+            while False:
+                # GPS data
+                self.gps.update()
+                self.mqtt_client.publish("gps/updating", "Updating...")
+                # Every second print out current location details if there's a fix.
+                current = time.monotonic()
+
+                #  self.print_data(accX, accY, temperature, altitude)
+
+                if current - last_print >= 0.1:
+                    last_print = current
+                    if not self.gps.has_fix:
+                    # Try again if we don't have a fix yet.
+                        self.mqtt_client.publish("gps/status", "Waiting for fix...")
+                        self.mqtt_client.publish("gps/inuse", str( self.gps.satellites ))
+                        continue
+
+                    # We have a fix! (gps.has_fix is true)
+                    self.mqtt_client.publish("gps/status", str(self.gps.has_fix))
+                    self.mqtt_client.publish("gps/inuse", str( self.gps.satellites ))
+                    self.mqtt_client.publish("gps/latitude", str( self.gps.latitude ))
+                    self.mqtt_client.publish("gps/longitude", str( self.gps.longitude ))
+                    self.mqtt_client.publish("gps/altitude", str( self.gps.altitude_m ))
+
+                    time.sleep(0.001)
+
+        except:
+            pass
+
+
+    def print_data(self, accelX, accelY, temp, altitude): #added altitude - 4/3
+       """
+       Log data in a single CSV file.
+       """
+
+       fp = open(self.filename, "a")
+       csvwriter = csv.writer(fp)
+       #formatted_x = f'{str(accelX)}'
+       #formatted_y = f'{str(accelY)}'
+       #formatted_temp = f'{str(temp)}'
+
+       print([accelX, accelY, temp, altitude])
+       csvwriter.writerow([accelX, accelY, temp, altitude]) #added altitude - 4/3
+       fp.close()
